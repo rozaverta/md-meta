@@ -8,7 +8,7 @@
 
 namespace MD\Meta;
 
-use EApp\App;
+use EApp\Prop;
 use EApp\Support\Str;
 
 class Meta
@@ -21,6 +21,11 @@ class Meta
 
 	protected $fill = [];
 
+	/**
+	 * Default meta properties
+	 *
+	 * @var Prop
+	 */
 	protected $default = [];
 
 	protected $meta = null;
@@ -49,7 +54,7 @@ class Meta
 			$this->name = (string) $name;
 		}
 
-		$this->default = App::getInstance()->config('meta');
+		$this->default = Prop::cache('meta');
 	}
 
 	public function ignoreDefault()
@@ -122,7 +127,7 @@ class Meta
 				continue;
 			}
 
-			if( !$this->ignoreDefault && isset($this->default[$key]) )
+			if( !$this->ignoreDefault && $this->default->getIs($key) )
 			{
 				$this->create($key, $this->default[$key]);
 			}
@@ -141,7 +146,7 @@ class Meta
 
 		// default
 		if( !$this->ignoreDefault )
-			foreach( $this->default as $name => $value )
+			foreach( $this->default->toArray() as $name => $value )
 			{
 				if( !in_array($name, $keys) )
 				{
