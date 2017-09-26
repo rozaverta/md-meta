@@ -1,0 +1,22 @@
+{
+	"name": "rozaverta/md-meta",
+	"description": "View tools module for Elastic CMF (Anaconda).",
+	"keywords": ["elastic", "els", "anaconda", "meta"],
+	"homepage": "http://rozaverta.com",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "GoshaV [Maniako]",
+			"email": "gosha@rozaverta.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6.4",
+		"rozaverta/cmf": "~0.0.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"MD\\VTools\\": "MD/Meta/"
+		}
+	}
+}
